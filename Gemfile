@@ -20,9 +20,9 @@ gem "importmap-rails"
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
-
+#user authentication
 gem 'devise'
-
+#to add user roles
 gem 'rolify'
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
