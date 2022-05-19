@@ -4,7 +4,6 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-
     alias_action :index, :show, to: :display
     alias_action :edit,:update,:destroy, to: :change
 
@@ -16,4 +15,5 @@ class Ability
       can :enrol, Event
     end
   end
+  
 end
