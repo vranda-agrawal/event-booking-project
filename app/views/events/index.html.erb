@@ -1,0 +1,26 @@
+<p style="color: green"><%= notice %></p>
+<% if flash[:message]%>
+  <% flash[:message].each do |message|%>
+    <p><%= message %></p>
+  <% end %>
+<% end %>
+<h1>Events </h1>
+
+<div id="events">
+  <% @events.each do |event| %>
+    <%= render event %>
+    <p>
+      <%= link_to "Show this event", event %>
+    </p>
+    <p>
+      <% if Enrol.where(user_id:current_user.id,event_id:event.id).exists? %>
+        <p><b>Enrolled</b></p>
+      <% else %>
+        <%= link_to "Enrol in this event", enrol_url(event), method: :get %>
+      <% end%>
+    </p>
+    <br/>
+  <% end %>
+</div>
+
+<%= link_to "New event", new_event_path %>
