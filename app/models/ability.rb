@@ -9,7 +9,7 @@ class Ability
 
     if user.has_role? :admin
       can :display, Event
-      can :change, Event, user_id:user.id
+      can :change, Event, user_id: user.id
     else
       can :read, Event
       can :enrol, Event
