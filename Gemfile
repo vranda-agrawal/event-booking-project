@@ -31,6 +31,11 @@ gem 'pry'
 
 #used for giving user permission according to their role
 gem 'cancancan'
+
+#to add admin interface
+gem 'activeadmin', github: 'gregbell/active_admin'
+
+gem 'sassc-rails'
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 

@@ -23,9 +23,8 @@
     <%= f.number_field :age, autocomplete: "age", required: true %>
   </div>
 
-  <div class="field">
-    <%= f.label :role_ids %><br />
-    <%= f.collection_select :role_ids, Role.all, :id, :name%>
+  <div>
+    <%= f.hidden_field :role_ids ,value: 2%>
   </div>
 
   <div class="field">
