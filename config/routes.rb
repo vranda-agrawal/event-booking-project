@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   get "/home" , to: 'home#index'
   get '/user', to: 'home#index'
   get '/enrol/:id', to: 'events#enrol',as: :enrol
+  get '/register/:id',to: 'events#register', as: :register
 end
