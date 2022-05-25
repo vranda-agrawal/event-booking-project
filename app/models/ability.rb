@@ -13,6 +13,7 @@ class Ability
     else
       can :read, Event
       can :enrol, Event
+      can :register, Event
     end
   end
   

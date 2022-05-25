@@ -49,6 +49,10 @@ gem 'whenever', require: false
 #store our configuration values
 gem 'figaro'
 
+gem 'square.rb', '>= 12.0.0.0'
+gem 'bootstrap', '~> 5.1.0'
+gem 'jquery-rails'
+
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 
