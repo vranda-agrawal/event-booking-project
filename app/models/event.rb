@@ -2,7 +2,7 @@ class Event < ApplicationRecord
   belongs_to :admin_user
   has_many :enrols, dependent: :destroy
   has_many :users, :through => :enrols
-  scope :next_day_event, -> { where("event_date= ?",Date.today+1) }
+  scope :next_day_event, -> { where(event_date: Date.tomorrow) }
 
   def registration_sms(user)
     to = user.phone_number
