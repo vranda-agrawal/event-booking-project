@@ -36,6 +36,19 @@ gem 'cancancan'
 gem 'activeadmin', github: 'gregbell/active_admin'
 
 gem 'sassc-rails'
+
+#used for background processing
+gem 'delayed_job_active_record'
+
+#to send sms
+gem 'twilio-ruby'
+
+#for cron jobs
+gem 'whenever', require: false
+
+#store our configuration values
+gem 'figaro'
+
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 

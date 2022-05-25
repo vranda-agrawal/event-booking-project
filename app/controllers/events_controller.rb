@@ -46,12 +46,14 @@ class EventsController < ApplicationController
 
   def enrol
     if Enrol.create(user_id:current_user.id,event_id:params[:id])
+      @event.delay.registration_sms(current_user)
       flash[:message]=["Successfully enrolled in an event"]
     else
       flash[:message]=["Successfully enrolled in an event"]
     end
     redirect_to events_path
   end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
