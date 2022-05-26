@@ -16,7 +16,7 @@
       <% if Enrol.where(user_id:current_user.id,event_id:event.id).exists? %>
         <p><b>Enrolled</b></p>
       <% else %>
-        <%= link_to "Enrol in this event", enrol_url(event), method: :get %>
+        <%= link_to "Click here to register at this event", register_url(event), method: :get %>
       <% end%>
     </p>
     <br/>

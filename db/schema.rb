@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_24_121122) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_26_082840) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -80,6 +80,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_24_121122) do
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["name"], name: "index_roles_on_name"
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.text "transaction_id"
+    t.integer "user_id"
+    t.string "status"
+    t.text "token"
+    t.integer "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   resources :customers, :controller => "users"
   get "/home" , to: 'home#index'
   get '/user', to: 'home#index'
-  get '/enrol/:id', to: 'events#enrol',as: :enrol
+  post '/payment/:id', to: 'payment#create',as: :payments
   get '/register/:id',to: 'events#register', as: :register
 end
