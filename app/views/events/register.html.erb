@@ -1,21 +1,106 @@
-<%= javascript_include_tag "https://sandbox.web.squarecdn.com/v1/square.js" , 'data-turbolinks-track': 'reload' %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= stylesheet_link_tag 'register.css' %>
+    <script
+      type="text/javascript"
+      src="https://sandbox.web.squarecdn.com/v1/square.js"
+    ></script>
+  </head>
+  <body>
+  <div>
+  <%= render @event %>
+  </div>
+  <%= form_with(id: "payment-form",url: payments_path(@event), method: :post, local: true) do |f| %>
+    <div class="mb-3">
+      <label for="card" class="form-label">Credit Card</label>
+      <div id="card-container"></div>
+      <%= f.hidden_field "card-nonce", name: "nonce" %>
+    </div>
+	  <%= f.submit "Pay" ,id: "card-button",class: "btn btn-primary"%>
+	<% end %>
+  <div id="payment-status-container"></div>
+  </body>
+<script>
+const appId = "sandbox-sq0idb-vTcIBh8Nn9wxcjrZ8nUYcw";
+const locationId = "L529VGVNRVPCX";
+async function initializeCard(payments) {
+  const card = await payments.card();
+  await card.attach('#card-container');
+  return card;
+}
 
-<div class="container">
-	<h1>New Payment</h1>
-	<p id="notice"><%= @notice %></p>
-	<div class="col-md-8 order-md-1">
-	  	<%= form_with(id: "payment-form",url: events_path, method: :post, local: true) do |f| %>
-			<div class="mb-3">
-				<label for="card" class="form-label">Credit Card</label>
-				<div id="card-container"></div>
-				<div id="payment-status-container"></div>
-				<%= f.hidden_field "card-nonce", name: "nonce" %>
-			</div>
-			<div class="mb-3">
-				<label for="price" class="form-label">Price</label>
-				<%= f.text_field "price",class: "form-control"%>
-			</div>
-	      	<%= f.submit "Pay" ,id: "card-button",class: "btn btn-primary"%>
-	    <% end %>
-	</div>
-</div>
+async function tokenize(paymentMethod) 
+  {
+    const tokenResult = await paymentMethod.tokenize();   
+    if (tokenResult.status === 'OK') 
+    {
+      return tokenResult.token;
+    } 
+    else 
+    {
+      let errorMessage = `Tokenization failed with status: ${tokenResult.status}`;
+      if (tokenResult.errors) {
+        errorMessage += ` and errors: ${JSON.stringify(
+          tokenResult.errors
+        )}`;
+      }
+    return errorMessage
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', async function () {
+  const cardButton = document.getElementById('card-button');
+  cardButton.addEventListener('click', async function (event) 
+    {
+      await handlePaymentMethodSubmission(event, card);
+      document.getElementById('payment-form').submit();
+    });
+
+  if (!window.Square) {
+    return;
+  }
+  
+  let payments;
+  try {
+    payments = window.Square.payments(appId, locationId);
+  } catch(e) {
+    const statusContainer = document.getElementById(
+      'payment-status-container'
+    );
+    statusContainer.className = 'missing-credentials';
+    statusContainer.style.visibility = 'visible';
+  	console.error(e);	
+    return;
+  }
+
+  let card;
+  try {
+    card = await initializeCard(payments);
+  } catch (e) {
+    console.error('Initializing Card failed', e);
+    return;
+  }
+
+  cardButton.addEventListener('click', async function (event) {
+    handlePaymentMethodSubmission(event, card);
+  });
+
+  async function handlePaymentMethodSubmission(event, paymentMethod) {
+    event.preventDefault();
+  
+    try {
+        cardButton.disabled = true;
+        const token = await tokenize(paymentMethod);
+        debugger;
+      	document.getElementById('card-nonce').value = token;
+    } catch (e) {
+	  console.error(e.message);
+      cardButton.disabled = false;
+    }
+  }
+});
+</script>
+
+</html>
+

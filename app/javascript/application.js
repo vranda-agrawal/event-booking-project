@@ -3,7 +3,3 @@
 //= require jquery_ujs
 import "@hotwired/turbo-rails"
 import "controllers"
-$( document ).ready(function() {
-    console.log( "ready!" );
-    alert("ready")
-});

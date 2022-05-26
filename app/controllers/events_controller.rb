@@ -1,7 +1,8 @@
 class EventsController < ApplicationController
+  layout false
   load_and_authorize_resource
   before_action :set_event, only: %i[ show edit update destroy ]
-
+  
   def index
     @events = Event.all
   end
@@ -44,14 +45,8 @@ class EventsController < ApplicationController
     end
   end
 
-  def enrol
-    if Enrol.create(user_id:current_user.id,event_id:params[:id])
-      @event.delay.registration_sms(current_user)
-      flash[:message]=["Successfully enrolled in an event"]
-    else
-      flash[:message]=["Successfully enrolled in an event"]
-    end
-    redirect_to events_path
+  def register
+    @event=Event.find(params[:id])
   end
 
   private
