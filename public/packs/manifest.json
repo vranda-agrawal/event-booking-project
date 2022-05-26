@@ -1,0 +1,14 @@
+{
+  "entrypoints": {
+    "register": {
+      "js": [
+        "/packs/js/register-14eb6b3460d360287aca.js"
+      ],
+      "js.map": [
+        "/packs/js/register-14eb6b3460d360287aca.js.map"
+      ]
+    }
+  },
+  "register.js": "/packs/js/register-14eb6b3460d360287aca.js",
+  "register.js.map": "/packs/js/register-14eb6b3460d360287aca.js.map"
+}
