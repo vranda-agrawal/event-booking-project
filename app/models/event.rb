@@ -8,7 +8,7 @@ class Event < ApplicationRecord
   def registration_sms(user)
     to = user.phone_number
     body = "Hey, you have successfully enrolled to our #{event_name} event"
-    #Event.send_sms(to,body)
+    Event.send_sms(to,body)
   end
 
   def self.reminder_sms
@@ -16,7 +16,7 @@ class Event < ApplicationRecord
       event.users.each do |user|
         to = user.phone_number
         body = "Hey, #{user.fullname} tomorrow you have #{event.event_name} event, to attend .We are looking forward to meet you their"
-        #send_sms(to,body)
+        send_sms(to,body)
       end
     end
   end

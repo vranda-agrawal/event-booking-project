@@ -1,5 +1,5 @@
-const appId = "sandbox-sq0idb-vTcIBh8Nn9wxcjrZ8nUYcw";
-const locationId = "L529VGVNRVPCX";
+const appId = ENV["SQUARE_APP_ID"];
+const locationId = ENV["SQUARE_LOCATION_ID"];
 async function initializeCard(payments) {
   const card = await payments.card();
   await card.attach('#card-container');

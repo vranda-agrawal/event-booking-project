@@ -30,14 +30,9 @@ class PaymentController < ApplicationController
   end
 
   def get_square_client
-    access_token = "EAAAENVqfGK99lOtJzCAXunx8D4vSjPHps95HAE9hRtxhGVaAuoBeAt6R2kZY49P"
-    location_id = "L529VGVNRVPCX"
-    case Rails.env
-    when"production"
-      environment="production"
-    else
-      environment='sandbox'
-    end
+    access_token = ENV["SQUARE_ACCESS_TOKEN"]
+    location_id = ENV["SQUARE_LOCATION_ID"]
+    environment = Rails.env == "production" ? "production" : "sandbox"
     client = Square::Client.new(
       access_token: access_token,
       environment: environment
@@ -47,7 +42,7 @@ class PaymentController < ApplicationController
 
   def create_payment(nonce, price)
     client=self.get_square_client
-    location_id="L529VGVNRVPCX"
+    location_id=ENV["SQUARE_LOCATION_ID"]
     result = client.payments.create_payment(
       body: {
         source_id: nonce,
