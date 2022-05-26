@@ -53,6 +53,7 @@ gem 'square.rb', '>= 12.0.0.0'
 gem 'bootstrap', '~> 5.1.0'
 gem 'jquery-rails'
 
+gem 'webpacker'
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 
