@@ -49,6 +49,7 @@ gem 'whenever', require: false
 #store our configuration values
 gem 'figaro'
 
+#to use square payment gateway
 gem 'square.rb', '>= 12.0.0.0'
 gem 'bootstrap', '~> 5.1.0'
 gem 'jquery-rails'
