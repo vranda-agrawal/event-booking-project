@@ -6,7 +6,7 @@ class PaymentController < ApplicationController
     enrol_user
     @payment=create_payment(params["nonce"],@event.price.to_i)
     if @payment.success?
-      if Transaction.create(transaction_id:@payment.data.payment[:id],user_id:current_user.id,status:@payment.data.payment[:status],token:params["card-nonce"],event_id:@event.id)
+      if Transaction.create(transaction_id:@payment.data.payment[:id],user_id:current_user.id,status:@payment.data.payment[:status],token:params["nonce"],event_id:@event.id)
         redirect_to events_path
       else
         flash[:message]=["Something went wrong"]

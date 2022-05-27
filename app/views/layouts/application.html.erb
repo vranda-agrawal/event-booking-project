@@ -9,8 +9,7 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <script src="https://sandbox.web.squarecdn.com/v1/square.js"></script>
-    <%= javascript_pack_tag "application" %>
-    <%= javascript_pack_tag 'registration' %>
+    <%= javascript_pack_tag "application" , 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>

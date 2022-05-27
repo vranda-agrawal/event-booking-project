@@ -1,5 +1,5 @@
-const appId = ENV["SQUARE_APP_ID"];
-const locationId = ENV["SQUARE_LOCATION_ID"];
+const appId = process.env.SQUARE_APP_ID;
+const locationId = process.env.SQUARE_APP_ID;
 async function initializeCard(payments) {
   const card = await payments.card();
   await card.attach('#card-container');
