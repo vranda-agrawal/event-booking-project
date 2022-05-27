@@ -56,6 +56,10 @@ gem 'jquery-rails'
 
 gem 'webpacker'
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
+
+#for postgresql database
+gem 'pg'
+
 gem "stimulus-rails"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
